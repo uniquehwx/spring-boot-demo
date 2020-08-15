@@ -143,6 +143,7 @@ public class UserMapperTest extends SpringBootDemoOrmMybatisMapperPageApplicatio
         example.createCriteria().andLike("name", "%Save1%").orEqualTo("phoneNumber", "17300000001");
         // 排序
         example.setOrderByClause("id desc");
+
         int count = userMapper.selectCountByExample(example);
         // 分页
         PageHelper.startPage(1, 3);

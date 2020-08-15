@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -37,6 +38,13 @@ public class UserMapperTest extends SpringBootDemoOrmMybatisApplicationTests {
     @Test
     public void selectAllUser() {
         List<User> userList = userMapper.selectAllUser();
+        Assert.assertTrue(CollUtil.isNotEmpty(userList));
+        log.debug("【userList】= {}", userList);
+    }
+
+    @Test
+    public void selectAll() {
+        List<Map> userList = userMapper.selectAll();
         Assert.assertTrue(CollUtil.isNotEmpty(userList));
         log.debug("【userList】= {}", userList);
     }

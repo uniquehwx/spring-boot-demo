@@ -69,12 +69,12 @@ public class AopLog {
 	 * @return 原方法返回值
 	 * @throws Throwable 异常信息
 	 */
-	@Around("log()")
+	/*@Around("log()")
 	public Object aroundLog(ProceedingJoinPoint point) throws Throwable {
 		Object result = point.proceed();
 		log.info("【返回值】：{}", JSONUtil.toJsonStr(result));
 		return result;
-	}
+	}*/
 
 	/**
 	 * 后置操作

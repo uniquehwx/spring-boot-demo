@@ -7,6 +7,7 @@
   <groupId>com.xkcoding</groupId>
   <artifactId>spring-boot-demo</artifactId>
   <version>1.0.0-SNAPSHOT</version>
+
   <modules>
     <module>spring-boot-demo-helloworld</module>
     <module>spring-boot-demo-properties</module>
@@ -63,6 +64,7 @@
     <module>spring-boot-demo-tio</module>
     <module>spring-boot-demo-codegen</module>
     <module>spring-boot-demo-graylog</module>
+    <module>spring-boot-demo-kdxf</module>
   </modules>
   <packaging>pom</packaging>
 

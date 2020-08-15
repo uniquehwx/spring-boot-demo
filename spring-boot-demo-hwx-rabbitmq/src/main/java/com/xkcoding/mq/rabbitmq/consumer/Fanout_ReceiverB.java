@@ -13,6 +13,6 @@ import org.springframework.stereotype.Component;
 public class Fanout_ReceiverB {
     @RabbitHandler
     public void process(String hello) {
-        System.out.println("AReceiver  : " + hello + "/n");
+        System.out.println("BReceiver  : " + hello + "/n");
     }
 }

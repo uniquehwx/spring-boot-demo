@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -30,9 +31,12 @@ public interface UserMapper {
      *
      * @return 用户列表
      */
-    @Select("SELECT * FROM orm_user")
+    @Select("SELECT * FROM orm_user ")
     List<User> selectAllUser();
 
+
+    @Select("SELECT account.name,account.money FROM orm_user ,account")
+    List<Map> selectAll();
     /**
      * 根据id查询用户
      *

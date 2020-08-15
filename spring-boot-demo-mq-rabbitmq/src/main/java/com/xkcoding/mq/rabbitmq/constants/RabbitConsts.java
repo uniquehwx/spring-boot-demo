@@ -32,12 +32,12 @@ public interface RabbitConsts {
     /**
      * 分列模式
      */
-    String FANOUT_MODE_QUEUE = "fanout.mode";
+    String FANOUT_MODE_QUEUE = "fanout.mode1";
 
     /**
      * 主题模式
      */
-    String TOPIC_MODE_QUEUE = "topic.mode";
+    String TOPIC_MODE_QUEUE = "topic.mode1";
 
     /**
      * 路由1
@@ -57,10 +57,10 @@ public interface RabbitConsts {
     /**
      * 延迟队列
      */
-    String DELAY_QUEUE = "delay.queue";
+    String DELAY_QUEUE = "delay.queue1";
 
     /**
      * 延迟队列交换器
      */
-    String DELAY_MODE_QUEUE = "delay.mode";
+    String DELAY_MODE_QUEUE = "delay.mode1";
 }

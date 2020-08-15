@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- 引入数据库连接配置 -->
+    <properties resource="jdbc.properties"/>
+
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <!-- 配置 tk.mybatis 插件 -->
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="com.tk.mybatis.CommonHwxMapper"/>
+        </plugin>
+
+        <!-- 配置数据库连接 -->
+        <jdbcConnection
+                driverClass="${jdbc.driverClass}"
+                connectionURL="${jdbc.connectionURL}"
+                userId="${jdbc.username}"
+                password="${jdbc.password}">
+        </jdbcConnection>
+
+        <!-- 配置实体类存放路径 -->
+        <javaModelGenerator targetPackage="com.xkcoding.orm.mybatis.MapperAndPage.entity" targetProject="src/main/java"/>
+
+        <!-- 配置 XML 存放路径 -->
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
+
+        <!-- 配置 DAO 存放路径 -->
+        <javaClientGenerator
+                targetPackage="com.xkcoding.orm.mybatis.MapperAndPage.mapper"
+                targetProject="src/main/java"
+                type="XMLMAPPER"/>
+
+
+        <!-- 配置的表数据信息 -->
+        <table catalog="spring-boot-demo" tableName="student" >
+            <!--ignoreQualifiersAtRuntime 为true 去除数据库名称 -->
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <!--generatedKey 对应主键及其生成策略 -->
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+
+
+
+
+    </context>
+</generatorConfiguration>

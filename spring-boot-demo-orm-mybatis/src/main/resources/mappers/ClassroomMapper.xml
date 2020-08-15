@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xkcoding.orm.mybatis.mapper.ClassroomMapper">
+    <!-- 关联表查询 -->
+    <!--
+        基础知识：
+        association：用于一对一的关联查询
+            property：对象的属性名
+            javaType：对象的类型
+            column：对应数据表中外键
+            select：使用另外一个查询的封装结果
+        collection：用于一对多的关联查询
+            ofType：指定集合对象的类型
+    -->
+
+    <!--
+        需求：通过 id 查询 classroom, 并打印 teacher 信息
+        嵌套查询：通过执行另外一个SQL映射语句来返回预期的复杂类型
+        第一步：先查询 classroom SELECT * FROM classroom WHERE id=?;
+        第二步：再查询 teacher SELECT * FROM teacher WHERE id=classroom.id //classroom 是第一步的查询结果
+        说明：嵌套查询的方法，虽然好理解，当时不建议
+    -->
+    <resultMap type="Classroom" id="oneByOne1">
+        <id property="id" column="id" />
+        <result property="room_name" column="room"/>
+        <association property="teacher" column="id" javaType="teacher">
+            <id property="id" column="tid"/>
+            <result property="name" column="tname"/>
+        </association>
+        <collection property="students" ofType="student" javaType="java.util.ArrayList"  column="id"  >
+            <id property="id" column="sid"/>
+            <result property="name" column="name"/>
+        </collection>
+    </resultMap>
+
+
+   <select id="selectOnebyOne" resultMap="oneByOne1">
+    SELECT c.*,t.id tid,t.name tname,s.id sid,s.name name  FROM  classroom c LEFT JOIN teacher t ON c.`id`=t.`class_room`
+    left join student s  on c.id=s.class_room
+   </select>
+
+    <!-- 关联表查询 第二种方式-->
+    <resultMap type="Classroom" id="oneByOne2">
+        <id property="id" column="id" />
+        <result property="room_name" column="room"/>
+        <association property="teacher" column="id" javaType="teacher">
+            <id property="id" column="tid"/>
+            <result property="name" column="tname"/>
+        </association>
+        <collection property="students" ofType="student" javaType="java.util.ArrayList"  column="id" select="select_stu" >
+
+        </collection>
+    </resultMap>
+
+    <select id="selectOnebyOne2" resultMap="oneByOne2">
+        SELECT c.*,t.id tid,t.name tname  FROM  classroom c LEFT JOIN teacher t ON c.`id`=t.`class_room`
+    </select>
+    <select id="select_stu" resultType="student" parameterType="int">
+       select  *  from student s where s.class_room=#{id}
+    </select>
+</mapper>
